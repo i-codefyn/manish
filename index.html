@@ -8,38 +8,114 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --light-color: #ecf0f1;
-            --dark-color: #34495e;
+            --primary-color: #6c63ff;
+            --secondary-color: #2d3748;
+            --light-color: #f7fafc;
+            --dark-color: #1a202c;
+            --accent-color: #ff6584;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #4a5568;
+            overflow-x: hidden;
+            background-color: var(--light-color);
         }
         
         .navbar {
-            background-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
         }
         
-        .navbar-brand, .nav-link {
-            color: white !important;
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--secondary-color) !important;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--secondary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
         }
         
         .hero {
-            background-color: var(--light-color);
-            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(108, 99, 255, 0.1);
+        }
+        
+        .hero:after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 101, 132, 0.1);
+        }
+        
+        .profile-img {
+            border: 5px solid white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .section-title {
             color: var(--secondary-color);
             position: relative;
             padding-bottom: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            font-weight: 700;
         }
         
         .section-title:after {
@@ -47,75 +123,287 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--primary-color);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
         }
         
         .skills .skill-item {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .progress {
-            height: 10px;
-            border-radius: 5px;
+            height: 12px;
+            border-radius: 6px;
+            background-color: #e2e8f0;
+            overflow: visible;
+        }
+        
+        .progress-bar {
+            border-radius: 6px;
+            position: relative;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .progress-bar:after {
+            content: attr(aria-valuenow)'%';
+            position: absolute;
+            right: -25px;
+            top: -30px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .progress-bar:before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
         }
         
         .project-card {
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
             margin-bottom: 30px;
             border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background-color: white;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+        
+        .badge {
+            padding: 6px 12px;
+            font-weight: 500;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-info i {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .form-control {
+            height: 50px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            height: auto;
+            padding-top: 15px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
         }
         
         footer {
             background-color: var(--secondary-color);
             color: white;
-            padding: 30px 0;
+            padding: 40px 0 20px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
         
         .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 20px;
+            border-radius: 50%;
             margin: 0 10px;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
         
         .social-icons a:hover {
-            color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: translateY(-5px);
         }
         
-        .contact-info i {
-            color: var(--primary-color);
-            margin-right: 10px;
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 3s ease infinite;
+        }
+        
+        /* Background shapes */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .bg-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-color);
+            top: 10%;
+            right: 10%;
+        }
+        
+        .bg-shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent-color);
+            bottom: 20%;
+            left: 5%;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 60px;
+                text-align: center;
+            }
+            
+            .profile-img {
+                margin-bottom: 30px;
+                max-width: 200px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Manish Sharma</a>
+            <a class="navbar-brand animate-on-scroll" href="#">Manish Sharma</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link animate-on-scroll" href="#about" data-delay="100">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
+                        <a class="nav-link animate-on-scroll" href="#skills" data-delay="200">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
+                        <a class="nav-link animate-on-scroll" href="#projects" data-delay="300">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link animate-on-scroll" href="#contact" data-delay="400">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -123,18 +411,22 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero text-center" id="about">
+    <section class="hero" id="about">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <img src="https://via.placeholder.com/400x400" alt="Manish Sharma" class="img-fluid rounded-circle mb-4" style="max-width: 250px;">
+                    <img src="https://via.placeholder.com/400x400" alt="Manish Sharma" class="img-fluid rounded-circle profile-img floating animate-on-scroll">
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate-on-scroll" data-delay="200">
                     <h1 class="display-4 fw-bold mb-3">Manish Sharma</h1>
-                    <h2 class="h4 mb-4">Full Stack Developer</h2>
+                    <h2 class="h4 mb-4 text-gradient">Full Stack Developer</h2>
                     <p class="lead mb-4">Passionate Full Stack Developer with over 5 years of experience, specializing in Python and Django development. Strong skills in front-end technologies including HTML, CSS, and Bootstrap.</p>
-                    <a href="#contact" class="btn btn-primary btn-lg px-4 me-2">Hire Me</a>
-                    <a href="#projects" class="btn btn-outline-primary btn-lg px-4">View Work</a>
+                    <div class="d-flex flex-wrap">
+                        <a href="#contact" class="btn btn-primary btn-lg px-4 me-3 mb-3 animate-on-scroll" data-delay="300">Hire Me</a>
+                        <a href="#projects" class="btn btn-outline-primary btn-lg px-4 mb-3 animate-on-scroll" data-delay="400">View Work</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,13 +435,13 @@
     <!-- About Section -->
     <section class="py-5">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title animate-on-scroll">About Me</h2>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate-on-scroll" data-delay="100">
                     <p>I am a passionate Full Stack Developer with over 5 years of experience, specializing in Python and Django development. I have strong skills in front-end technologies as well, including HTML, CSS, and Bootstrap.</p>
                     <p>I have completed my B.Tech and a Full Stack Web Development program, building a solid foundation in modern web technologies.</p>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate-on-scroll" data-delay="200">
                     <p>Due to health issues that limit my mobility, I currently work remotely from my location. I am available for freelance and project-based work, offering high-quality development services with dedication and attention to detail.</p>
                     <p>Although I am not available for full-time positions, I am committed to delivering excellent results for your project needs.</p>
                 </div>
@@ -160,48 +452,48 @@
     <!-- Skills Section -->
     <section class="py-5 bg-light" id="skills">
         <div class="container">
-            <h2 class="section-title">My Skills</h2>
+            <h2 class="section-title animate-on-scroll">My Skills</h2>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 animate-on-scroll" data-delay="100">
                     <div class="skills">
                         <div class="skill-item">
                             <h5>Python</h5>
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 95%"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <h5>Django</h5>
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <h5>HTML/CSS</h5>
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 animate-on-scroll" data-delay="200">
                     <div class="skills">
                         <div class="skill-item">
                             <h5>JavaScript</h5>
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <h5>Bootstrap</h5>
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <h5>Database (SQL/NoSQL)</h5>
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
@@ -213,46 +505,52 @@
     <!-- Projects Section -->
     <section class="py-5" id="projects">
         <div class="container">
-            <h2 class="section-title">My Projects</h2>
+            <h2 class="section-title animate-on-scroll">My Projects</h2>
             <div class="row">
                 <!-- Project 1 -->
-                <div class="col-md-4">
+                <div class="col-md-4 animate-on-scroll" data-delay="100">
                     <div class="project-card card">
                         <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Project 1">
                         <div class="card-body">
                             <h5 class="card-title">E-commerce Platform</h5>
                             <p class="card-text">A full-featured e-commerce platform built with Django, React, and PostgreSQL.</p>
-                            <span class="badge bg-primary me-1">Django</span>
-                            <span class="badge bg-primary me-1">React</span>
-                            <span class="badge bg-primary">PostgreSQL</span>
+                            <div class="mt-3">
+                                <span class="badge">Django</span>
+                                <span class="badge">React</span>
+                                <span class="badge">PostgreSQL</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 2 -->
-                <div class="col-md-4">
+                <div class="col-md-4 animate-on-scroll" data-delay="200">
                     <div class="project-card card">
                         <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Project 2">
                         <div class="card-body">
                             <h5 class="card-title">Task Management App</h5>
                             <p class="card-text">A collaborative task management application with real-time updates.</p>
-                            <span class="badge bg-primary me-1">Python</span>
-                            <span class="badge bg-primary me-1">Django</span>
-                            <span class="badge bg-primary">WebSockets</span>
+                            <div class="mt-3">
+                                <span class="badge">Python</span>
+                                <span class="badge">Django</span>
+                                <span class="badge">WebSockets</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 3 -->
-                <div class="col-md-4">
+                <div class="col-md-4 animate-on-scroll" data-delay="300">
                     <div class="project-card card">
                         <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Project 3">
                         <div class="card-body">
                             <h5 class="card-title">Portfolio Website</h5>
                             <p class="card-text">A responsive portfolio website built with HTML, CSS, and Bootstrap.</p>
-                            <span class="badge bg-primary me-1">HTML5</span>
-                            <span class="badge bg-primary me-1">CSS3</span>
-                            <span class="badge bg-primary">Bootstrap</span>
+                            <div class="mt-3">
+                                <span class="badge">HTML5</span>
+                                <span class="badge">CSS3</span>
+                                <span class="badge">Bootstrap</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -263,22 +561,40 @@
     <!-- Contact Section -->
     <section class="py-5 bg-light" id="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title animate-on-scroll">Get In Touch</h2>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate-on-scroll" data-delay="100">
                     <div class="contact-info mb-4">
-                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> manis.shr@gmail.com</p>
-                        <p><i class="fas fa-user-tie"></i> <strong>Availability:</strong> Freelance/Project-based work</p>
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Remote (India)</p>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h5 class="mb-0">Email</h5>
+                                <p class="mb-0">manis.shr@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-user-tie"></i>
+                            <div>
+                                <h5 class="mb-0">Availability</h5>
+                                <p class="mb-0">Freelance/Project-based work</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h5 class="mb-0">Location</h5>
+                                <p class="mb-0">Remote (India)</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="social-icons mb-4">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-stack-overflow"></i></a>
+                        <a href="#" class="animate-on-scroll" data-delay="100"><i class="fab fa-github"></i></a>
+                        <a href="#" class="animate-on-scroll" data-delay="200"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="animate-on-scroll" data-delay="300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="animate-on-scroll" data-delay="400"><i class="fab fa-stack-overflow"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate-on-scroll" data-delay="200">
                     <form>
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="Your Name" required>
@@ -302,6 +618,12 @@
     <!-- Footer -->
     <footer class="text-center">
         <div class="container">
+            <div class="social-icons mb-4">
+                <a href="#" class="animate-on-scroll" data-delay="100"><i class="fab fa-github"></i></a>
+                <a href="#" class="animate-on-scroll" data-delay="200"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="animate-on-scroll" data-delay="300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="animate-on-scroll" data-delay="400"><i class="fab fa-stack-overflow"></i></a>
+            </div>
             <p>&copy; <span id="year"></span> Manish Sharma. All Rights Reserved.</p>
         </div>
     </footer>
@@ -320,6 +642,46 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    const delay = element.getAttribute('data-delay') || 0;
+                    
+                    setTimeout(() => {
+                        element.classList.add('animated');
+                    }, delay * 100);
+                }
+            });
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        
+        // Animate elements when scrolling
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Initialize animations for elements already in view
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force a reflow to trigger animations for elements already in view
+            setTimeout(animateOnScroll, 100);
         });
     </script>
 </body>
