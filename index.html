@@ -3,364 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manish Sharma - Full Stack Developer</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Manish Sharma - Django Full-Stack Developer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Devicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary-color: #6c63ff;
-            --secondary-color: #2d3748;
-            --light-color: #f7fafc;
-            --dark-color: #1a202c;
-            --accent-color: #ff6584;
+            --primary-color: #0d6efd; /* Professional Blue */
+            --secondary-color: #6f42c1; /* Tech Purple */
+            --text-color: #212529; /* Darker text for better readability */
+            --light-text-color: #495057; /* Slightly lighter gray */
+            --bg-light: #f8f9fa; /* Standard light background */
+            --bg-dark: #212529; /* Darker footer/section background */
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer shadow */
+              --code-bg: #0f172a;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.7;
-            color: #4a5568;
+            color: var(--text-color);
+            background-color: var(--bg-light);
             overflow-x: hidden;
-            background-color: var(--light-color);
+            line-height: 1.7;
         }
-        
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        /* --- Navbar --- */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
-            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            transition: background-color 0.3s ease, padding 0.3s ease;
         }
-        
-        .navbar.scrolled {
-            padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        
         .navbar-brand {
             font-weight: 700;
-            color: var(--secondary-color) !important;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            color: var(--primary-color) !important;
         }
-        
+        .navbar-brand .bi-code-braces { /* Changed icon */
+            margin-right: 8px;
+            vertical-align: -3px;
+        }
         .nav-link {
-            color: var(--secondary-color) !important;
+            color: var(--light-text-color) !important;
             font-weight: 500;
-            margin: 0 10px;
-            position: relative;
+            margin-left: 0.75rem;
+            margin-right: 0.75rem;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
         }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
         }
-        
-        .nav-link:hover:after {
-            width: 100%;
+        .navbar-toggler {
+            border: none;
+            color: var(--primary-color);
         }
-        
-        .hero {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 120px 0 80px;
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .navbar-scrolled {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.98); /* More opaque on scroll */
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            background: (--card-bg);
+            color: (--dark-color);
+            padding: 160px 0 120px; /* Increased padding */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
         }
-        
-        .hero:before {
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section::before {
             content: '';
             position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 300px;
-            height: 300px;
+            top: -60px; left: -60px;
+            width: 250px; height: 250px;
+            background: rgba(255,255,255,0.08);
             border-radius: 50%;
-            background: rgba(108, 99, 255, 0.1);
+            filter: blur(60px); /* Increased blur */
         }
-        
-        .hero:after {
+        .hero-section::after {
             content: '';
             position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: rgba(255, 101, 132, 0.1);
+            bottom: -100px; right: -100px;
+            width: 350px; height: 350px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 40% 60% 65% 35% / 35% 55% 45% 65%;
+            filter: blur(70px); /* Increased blur */
+            animation: morph 18s infinite alternate;
+        }
+        @keyframes morph {
+            0% { border-radius: 40% 60% 65% 35% / 35% 55% 45% 65%; transform: rotate(0deg) scale(1); }
+            100% { border-radius: 65% 35% 55% 45% / 60% 40% 70% 30%; transform: rotate(10deg) scale(1.05);}
+        }
+
+           
+        .hero-content h1 {
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
         
-        .profile-img {
-            border: 5px solid white;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-            width: 400px;
-           height: 400px;
-           object-fit: cover; /* keeps image nicely fitted */
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #555;
         }
         
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        .hero-section .lead {
+            font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+            margin-bottom: 35px;
+            font-weight: 300;
+            max-width: 700px;
         }
-  
-        
-        @media (max-width: 768px) {
-          .profile-img {
-            width: 120px;
-            height: 120px;
-          }
+        .hero-section .btn {
+            font-weight: 600;
+            padding: 14px 35px; /* Larger buttons */
+            font-size: 1.05rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border-width: 2px;
+        }
+        .btn-primary-custom {
+            background-color: #ffffff;
+            color: var(--primary-color);
+            border-color: #ffffff;
+        }
+        .btn-primary-custom:hover {
+            background-color: transparent;
+            color: #ffffff;
+            transform: translateY(-4px); /* More hover effect */
+        }
+        .btn-secondary-custom {
+            background-color: transparent;
+            color: #ffffff;
+            border-color: #ffffff;
+            margin-left: 15px;
+        }
+        .btn-secondary-custom:hover {
+            background-color: #ffffff;
+            color: var(--primary-color);
+            transform: translateY(-4px);
+        }
+        .hero-img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25); /* Enhanced shadow */
+        }
+
+        /* --- Section Styling --- */
+        .section-padding {
+            padding: 100px 0;
         }
         .section-title {
-            color: var(--secondary-color);
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            border-radius: 2px;
-        }
-        
-        .skills .skill-item {
-            margin-bottom: 25px;
-        }
-        
-        .progress {
-            height: 12px;
-            border-radius: 6px;
-            background-color: #e2e8f0;
-            overflow: visible;
-        }
-        
-        .progress-bar {
-            border-radius: 6px;
-            position: relative;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-        }
-        
-        .progress-bar:after {
-            content: attr(aria-valuenow)'%';
-            position: absolute;
-            right: -25px;
-            top: -30px;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
-        
-        .progress-bar:before {
-            content: '';
-            position: absolute;
-            right: -8px;
-            top: -8px;
-            width: 16px;
-            height: 16px;
-            background-color: var(--secondary-color);
-            border-radius: 50%;
-        }
-        
-        .project-card {
-            transition: all 0.4s ease;
-            margin-bottom: 30px;
-            border: none;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            background-color: white;
-            height: 100%;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .project-card .card-img-top {
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .project-card:hover .card-img-top {
-            transform: scale(1.1);
-        }
-        
-        .badge {
-            padding: 6px 12px;
-            font-weight: 500;
-            border-radius: 20px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-        }
-        
-        .contact-info {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-        
-        .contact-info i {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
             text-align: center;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            color: white;
+            margin-bottom: 60px;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: var(--text-color);
+            position: relative;
+        }
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin: 0 auto 15px;
+            border-radius: 3px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--light-text-color);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: -40px auto 60px auto;
+        }
+        .text-justify {
+            text-align: justify;
+        }
+        /* --- About Section --- */
+        #about {
+            background-color: var(--card-bg);
+        }
+        .about-img {
+            width: 100%;
+            max-width: 350px;
             border-radius: 50%;
-            margin-right: 15px;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 0 0 10px var(--card-bg), 0 0 0 12px var(--primary-color), var(--box-shadow);
+            margin: 0 auto 30px auto;
         }
-        
-        .form-control {
-            height: 50px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            padding-left: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-        }
-        
-        textarea.form-control {
-            height: auto;
-            padding-top: 15px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
-        }
-        
-        .btn-outline-primary {
-            border: 2px solid var(--primary-color);
+        .about-text h3 {
             color: var(--primary-color);
             font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            font-size: 1.8rem; /* Slightly larger */
         }
-        
-        .btn-outline-primary:hover {
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            color: white;
-            border-color: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+        .about-text p {
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+            font-size: 1.05rem; /* Slightly larger */
         }
-        
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 40px 0 20px;
+        .social-icons-about .bi {
+            font-size: 1.8rem;
+            color: var(--light-text-color);
+            margin-right: 20px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icons-about .bi:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* --- Skills Section --- */
+        .skill-item {
+            margin-bottom: 30px;
+        }
+        .skill-item h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .progress {
+            height: 12px; /* Thicker progress bar */
+            border-radius: 6px;
+            background-color: #e9ecef;
+            overflow: visible;
+        }
+        .progress-bar {
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            border-radius: 6px;
             position: relative;
+            transition: width 0.6s ease-in-out; /* Smooth animation */
         }
-        
-        footer:before {
-            content: '';
+        .progress-bar span {
+            position: absolute;
+            right: -30px; /* Adjusted for thicker bar */
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .skill-icon {
+            font-size: 3rem; /* Larger icons */
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 30px; /* More padding */
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px); /* More hover effect */
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+        }
+        .skill-card h4 {
+            font-size: 1.3rem; /* Slightly larger skill title */
+        }
+
+        /* --- Projects Section --- */
+        #projects {
+             background-color: var(--bg-light);
+        }
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .project-card img {
+            width: 100%;
+            height: 230px; /* Slightly taller image */
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        .project-card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card-body h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .project-card-body p {
+            font-size: 0.9rem;
+            color: var(--light-text-color);
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        .project-tags span {
+            background-color: #e9ecef; /* Neutral background for tags */
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            padding: 5px 10px; /* Slightly more padding */
+            border-radius: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .project-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        .project-links a:hover {
+            color: var(--primary-color);
+        }
+        .project-links .bi {
+            margin-right: 5px;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://placehold.co/1920x1080/2c3e50/ecf0f1?text=Let%27s+Build+Something+Amazing') no-repeat center center; /* Updated background */
+            background-size: cover;
+            color: #f8f9fa;
+        }
+        #contact .section-title, #contact .section-subtitle {
+            color: #f8f9fa;
+        }
+        #contact .section-title::before {
+             background: linear-gradient(to right, #fff, #ccc);
+        }
+        .contact-form .form-control {
+            background-color: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 14px 18px; /* Increased padding */
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .contact-form .form-control::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        .contact-form .form-control:focus {
+            background-color: rgba(255,255,255,0.15);
+            border-color: var(--secondary-color);
+            color: #f8f9fa;
+            box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25); /* Bootstrap primary focus */
+        }
+        .contact-form .btn-submit {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 14px 35px; /* Larger button */
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form .btn-submit:hover {
+            background: var(--secondary-color);
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: #f8f9fa;
+        }
+        .contact-info-item .bi {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-right: 20px;
+            width: 30px;
+        }
+        .contact-info-item a {
+            color: #f8f9fa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info-item a:hover {
+            color: var(--secondary-color);
+        }
+
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #adb5bd;
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        .footer p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .footer .social-icons .bi {
+            font-size: 1.6rem;
+            color: #adb5bd;
+            margin: 0 12px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer .social-icons .bi:hover {
+            color: var(--primary-color); /* Changed hover to primary */
+            transform: translateY(-3px);
+        }
+        .footer .back-to-top {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            width: 44px; /* Slightly larger */
+            height: 44px;
+            line-height: 44px;
+            border-radius: 50%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .footer .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991.98px) {
+            .hero-section {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+            .hero-img-col {
+                margin-top: 50px; /* Increased margin */
+            }
+            .hero-img {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            .section-title {
+                font-size: 2.4rem; /* Adjusted size */
+            }
+            .about-img {
+                margin-bottom: 40px; /* Increased margin */
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .navbar-brand {
+                font-size: 1.6rem; /* Adjusted size */
+            }
+            .hero-section h1 {
+                font-size: 2.2rem; /* Adjusted size */
+            }
+            .hero-section .lead {
+                font-size: 1.05rem; /* Adjusted size */
+            }
+            .hero-section .btn {
+                padding: 12px 28px; /* Adjusted padding */
+                font-size: 0.95rem;
+            }
+            .section-padding {
+                padding: 70px 0; /* Adjusted padding */
+            }
+            .section-title {
+                font-size: 2rem; /* Adjusted size */
+                margin-bottom: 50px;
+            }
+            .section-subtitle {
+                margin-bottom: 50px;
+                font-size: 1rem;
+            }
+            .project-card img {
+                height: 200px; /* Adjusted height */
+            }
+            .contact-form-col {
+                margin-bottom: 40px;
+            }
+            .skill-card {
+                padding: 25px;
+            }
+            .progress-bar span {
+                right: -28px;
+            }
+        }
+      .floating-shapes {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 10px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
         }
         
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            margin: 0 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            transform: translateY(-5px);
-        }
-        
-        /* Animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        /* Pulse animation */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 3s ease infinite;
-        }
-        
-        /* Background shapes */
-        .bg-shape {
+        .shape {
             position: absolute;
-            border-radius: 50%;
             opacity: 0.1;
-            z-index: -1;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
         }
         
-        .bg-shape-1 {
+        .shape:nth-child(2n) {
+            animation-direction: reverse;
+            animation-duration: 20s;
+        }
+        
+        .shape-1 {
             width: 300px;
             height: 300px;
             background: var(--primary-color);
@@ -368,411 +564,654 @@
             right: 10%;
         }
         
-        .bg-shape-2 {
+        .shape-2 {
             width: 200px;
             height: 200px;
-            background: var(--accent-color);
+            background: var(--secondary-color);
             bottom: 20%;
-            left: 5%;
+            left: 15%;
         }
         
-        /* Responsive adjustments */
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--success-color);
+            top: 60%;
+            right: 30%;
+        }
+        
+        .code-bg {
+            background-color: var(--code-bg);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .code-bg:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 90%, rgba(0,0,0,0.3));
+            pointer-events: none;
+        }
+        
+        .code-line {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .line-number {
+            color: #6c757d;
+            margin-right: 20px;
+            user-select: none;
+        }
+        
+        .code-keyword {
+            color: #ff79c6;
+        }
+        
+        .code-function {
+            color: #50fa7b;
+        }
+        
+        .code-string {
+            color: #f1fa8c;
+        }
+        
+        .code-comment {
+            color: #6272a4;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.2);
+        }
+        .contact-info-item i {
+            width: 24px;
+            min-width: 24px;
+            text-align: center;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        .typing-text {
+            border-right: 3px solid var(--primary-color);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+        
         @media (max-width: 768px) {
-            .hero {
-                padding: 100px 0 60px;
-                text-align: center;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
             
-            .profile-img {
-                margin-bottom: 30px;
-                max-width: 200px;
+            .hero-content p {
+                font-size: 1.1rem;
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="80">
+
+    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand animate-on-scroll" href="#">Manish Sharma</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-code-braces"></i> Manish Sharma
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link animate-on-scroll" href="#about" data-delay="100">About</a>
+                        <a class="nav-link active" href="#hero">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate-on-scroll" href="#skills" data-delay="200">Skills</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate-on-scroll" href="#projects" data-delay="300">Projects</a>
+                        <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate-on-scroll" href="#contact" data-delay="400">Contact</a>
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="bg-shape bg-shape-1"></div>
-        <div class="bg-shape bg-shape-2"></div>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                   <img src="mk.JPG" alt="Manish Sharma" class="profile-img img-fluid rounded-circle floating animate-on-scroll">
-
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                        <div class="hero-content">
+                            <h1 class="animate__animated animate__fadeInDown">Hi, I'm <span class="text-gradient">Manish Sharma</span></h1>
+                            <h2 class="typing-text mb-4" style="height: 1.5em;">Full-Stack Django Developer</h2>
+                            <p class="animate__animated animate__fadeIn animate__delay-1s">Building Scalable Web Solutions with Django | Full-Stack Expertise in Frontend & DevOps Tools</p>
+                            <div class="d-flex gap-3 animate__animated animate__fadeIn animate__delay-2s">
+                                <a href="#contact" class="btn btn-primary pulse">Hire Me</a>
+                                <a href="#portfolio" class="btn btn-outline-primary">View Work</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                        <div class="code-bg animate__animated animate__fadeIn animate__delay-1s">
+                            <div class="code-line"><span class="line-number">1</span> <span class="code-keyword">class</span> <span class="code-function">Portfolio</span>:</div>
+                            <div class="code-line"><span class="line-number">2</span> &nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>):</div>
+                            <div class="code-line"><span class="line-number">3</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.name = <span class="code-string">"Manish Sharma"</span></div>
+                            <div class="code-line"><span class="line-number">4</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.role = <span class="code-string">"Full-Stack Developer"</span></div>
+                            <div class="code-line"><span class="line-number">5</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.skills = [<span class="code-string">"Python"</span>, <span class="code-string">"Django"</span>, <span class="code-string">"Docker"</span>]</div>
+                            <div class="code-line"><span class="line-number">6</span> &nbsp;&nbsp;<span class="code-comment"># Let's build something amazing together!</span></div>
+                            <div class="tech-stack">
+                                <i class="devicon-python-plain colored tech-icon" title="Python"></i>
+                                <i class="devicon-django-plain colored tech-icon" title="Django"></i>
+                                <i class="devicon-mysql-plain colored tech-icon" title="MySQL"></i>
+                                <i class="devicon-postgresql-plain colored tech-icon" title="PostgreSQL"></i>
+                                <i class="devicon-docker-plain colored tech-icon" title="Docker"></i>
+                                <i class="devicon-bootstrap-plain colored tech-icon" title="Bootstrap"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 animate-on-scroll" data-delay="200">
-                    <h1 class="display-4 fw-bold mb-3">Manish Sharma</h1>
-                    <h2 class="h4 mb-4 text-gradient">Full Stack Developer</h2>
-                    <p class="lead mb-4">Passionate Full Stack Developer with over 5 years of experience, specializing in Python and Django development. Strong skills in front-end technologies including HTML, CSS, and Bootstrap.</p>
-                    <div class="d-flex flex-wrap">
-                        <a href="#contact" class="btn btn-primary btn-lg px-4 me-3 mb-3 animate-on-scroll" data-delay="300">Hire Me</a>
-                        <a href="#projects" class="btn btn-outline-primary btn-lg px-4 mb-3 animate-on-scroll" data-delay="400">View Work</a>
+            </div>
+        </section>
+
+
+            <section id="about" class="section-padding">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">About Me</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                        Discover my journey, passion, and expertise in crafting robust web applications.
+                    </p>
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 text-center" data-aos="fade-right" data-aos-delay="200">
+                            <img src="https://placehold.co/350x350/6f42c1/ffffff?text=Manish+Sharma&font=poppins" class="about-img" alt="Manish Sharma">
+                            <script>
+                                document.querySelector('img[src="https://placehold.co/350x350/6f42c1/ffffff?text=Manish+Sharma&font=poppins"]').onerror = function() {
+                                    this.onerror=null;
+                                    this.src='https://placehold.co/350x350/cccccc/333333?text=Profile+Image';
+                                }
+                            </script>
+                        </div>
+                        <div class="col-lg-8 about-text text-justify" data-aos="fade-left" data-aos-delay="300">
+                            <h3>Building Scalable Web Solutions with Django</h3>
+                            <p>Hello! I'm Manish Sharma, a dedicated Full-Stack Developer with a strong focus on Python and Django. My expertise extends to crafting robust backend systems and dynamic frontend interfaces, complemented by a solid understanding of DevOps tools like Docker.</p>
+                            <p>I thrive on transforming complex requirements into efficient, scalable, and user-friendly web applications. With proficiency in databases like MySQL and PostgreSQL, and frontend technologies including Bootstrap, I bring a holistic approach to development. My goal is to leverage the latest tools and best practices to deliver high-quality software solutions.</p>
+                            <p>Based in Siliguri, West Bengal, I'm passionate about continuous learning and contributing to innovative projects. Let's connect and build something amazing together!</p>
+                            <div class="mt-4 social-icons-about">
+                                <a href="https://www.linkedin.com/in/manish-sharma-codefyn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/manish-codefyn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                <section id="skills" class="section-padding">
+                    <div class="container">
+                        <h2 class="section-title" data-aos="fade-up">My Core Skills</h2>
+                        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                            Proficient in a variety of technologies to build and deploy modern web applications.
+                        </p>
+                    <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-card">
+                        <i class="fas fa-code skill-icon"></i> <h4>Python & Django</h4>
+                        <p class="text-muted">Expert in Django framework for rapid development of secure and maintainable web applications.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-card">
+                        <i class="fas fa-database skill-icon"></i> <h4>Databases</h4>
+                        <p class="text-muted">Proficient with MySQL and PostgreSQL, including database design, optimization, and management.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-card">
+                        <i class="fab fa-bootstrap skill-icon"></i> <h4>Frontend Tech</h4>
+                        <p class="text-muted">Skilled in Bootstrap for responsive UIs, along with HTML5, CSS3, and JavaScript fundamentals.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="skill-card">
+                        <i class="fab fa-docker skill-icon"></i> <h4>Docker & DevOps</h4>
+                        <p class="text-muted">Experience with Docker for containerization and streamlining development to deployment workflows.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="skill-card">
+                        <i class="fas fa-tools skill-icon"></i> <h4>Modern Tools</h4>
+                        <p class="text-muted">Adept at using Git, REST APIs, and other modern development tools and practices.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="skill-card">
+                        <i class="fas fa-lightbulb skill-icon"></i> <h4>Problem Solving</h4>
+                        <p class="text-muted">Strong analytical skills and a proactive approach to tackling complex technical challenges.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-6 skill-item" data-aos="fade-right" data-aos-delay="200">
+                    <h5>Python & Django</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 skill-item" data-aos="fade-left" data-aos-delay="250">
+                    <h5>MySQL & PostgreSQL</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span>85%</span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 skill-item" data-aos="fade-right" data-aos-delay="300">
+                    <h5>Bootstrap & Frontend</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><span>80%</span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 skill-item" data-aos="fade-left" data-aos-delay="350">
+                    <h5>Docker</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span>75%</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">About Me</h2>
-            <div class="row">
-                <div class="col-lg-6 animate-on-scroll" data-delay="100">
-                    <p>I am a passionate Full Stack Developer with over 5 years of experience, specializing in Python and Django development. I have strong skills in front-end technologies as well, including HTML, CSS, and Bootstrap.</p>
-                    <p>I have completed my B.Tech and a Full Stack Web Development program, building a solid foundation in modern web technologies.</p>
-                </div>
-                <div class="col-lg-6 animate-on-scroll" data-delay="200">
-                    <p>Due to health issues that limit my mobility, I currently work remotely from my location. I am available for freelance and project-based work, offering high-quality development services with dedication and attention to detail.</p>
-                    <p>Although I am not available for full-time positions, I am committed to delivering excellent results for your project needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   <section id="projects" class="section-padding">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">My Recent Projects</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            A glimpse into some of the solutions I've developed. More details available on request.
+        </p>
+        <div class="row g-4">
 
-    <!-- Skills Section -->
-    <section class="py-5 bg-light" id="skills">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">My Skills</h2>
-            <div class="row">
-                <div class="col-md-6 animate-on-scroll" data-delay="100">
-                    <div class="skills">
-                        <div class="skill-item">
-                            <h5>Python</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+            <!-- Example Project -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/0d6efd/ffffff?text=Mobile+Repair+Site" alt="Mobile Repairing Management Website">
+                    <div class="project-card-body">
+                        <h4>Mobile Repairing Website</h4>
+                        <p>A complete Django-based mobile repairing platform with dynamic parts management and orders.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Cart System</span><span>Bootstrap</span>
                         </div>
-                        <div class="skill-item">
-                            <h5>Django</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>HTML/CSS</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>JavaScript</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>PostgreSQL</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-on-scroll" data-delay="200">
-                    <div class="skills">
-                        <div class="skill-item">
-                            <h5>MySQL</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>Redis</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>Docker</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>Bootstrap</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h5>Database (SQL/NoSQL)</h5>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://www.fixenix.com" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Live Site</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="py-5" id="projects">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">My Projects</h2>
-            <div class="row">
-                <!-- Project 1 -->
-                <div class="col-md-4 animate-on-scroll" data-delay="100">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" class="card-img-top" alt="CodeFyn">
-                        <div class="card-body">
-                            <h5 class="card-title">CodeFyn</h5>
-                            <p class="card-text">A comprehensive web development platform offering tools and resources for developers.</p>
-                            <div class="mt-3">
-                                <span class="badge">Django</span>
-                                <span class="badge">React</span>
-                                <span class="badge">PostgreSQL</span>
-                            </div>
-                            <a href="https://www.codefyn.com" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Site</a>
+            <!-- Repeat for each project below -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/6610f2/ffffff?text=Quick+Cart" alt="Mobile Parts Quick Cart">
+                    <div class="project-card-body">
+                        <h4>Mobile Parts Quick Cart</h4>
+                        <p>Quick cart checkout platform for mobile accessories and replacement parts.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Quick Checkout</span>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="col-md-4 animate-on-scroll" data-delay="200">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" class="card-img-top" alt="CrotonLeaf">
-                        <div class="card-body">
-                            <h5 class="card-title">CrotonLeaf</h5>
-                            <p class="card-text">An e-commerce platform specializing in unique plants and gardening supplies.</p>
-                            <div class="mt-3">
-                                <span class="badge">Python</span>
-                                <span class="badge">Django</span>
-                                <span class="badge">MySQL</span>
-                            </div>
-                            <a href="https://www.crotonleaf.com" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Site</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="col-md-4 animate-on-scroll" data-delay="300">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" class="card-img-top" alt="PassPhoto">
-                        <div class="card-body">
-                            <h5 class="card-title">PassPhoto</h5>
-                            <p class="card-text">An online passport photo tool that helps users create compliant photos instantly.</p>
-                            <div class="mt-3">
-                                <span class="badge">Django</span>
-                                <span class="badge">OpenCV</span>
-                                <span class="badge">Redis</span>
-                            </div>
-                            <a href="https://www.passphoto.in" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Site</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="col-md-4 animate-on-scroll" data-delay="100">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" class="card-img-top" alt="Fixenix">
-                        <div class="card-body">
-                            <h5 class="card-title">Fixenix</h5>
-                            <p class="card-text">A service platform connecting customers with home service professionals.</p>
-                            <div class="mt-3">
-                                <span class="badge">Django</span>
-                                <span class="badge">React</span>
-                                <span class="badge">Docker</span>
-                            </div>
-                            <a href="https://www.fixenix.com" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Site</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="col-md-4 animate-on-scroll" data-delay="200">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" class="card-img-top" alt="Marketing CodeFyn">
-                        <div class="card-body">
-                            <h5 class="card-title">Marketing CodeFyn</h5>
-                            <p class="card-text">Marketing portal for CodeFyn platform with analytics and campaign management.</p>
-                            <div class="mt-3">
-                                <span class="badge">Python</span>
-                                <span class="badge">Django</span>
-                                <span class="badge">PostgreSQL</span>
-                            </div>
-                            <a href="https://marketing.codefyn.com" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Site</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 6 -->
-                <div class="col-md-4 animate-on-scroll" data-delay="300">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" class="card-img-top" alt="Fixenix Pro">
-                        <div class="card-body">
-                            <h5 class="card-title">Fixenix Pro</h5>
-                            <p class="card-text">Professional dashboard for service providers on the Fixenix platform.</p>
-                            <div class="mt-3">
-                                <span class="badge">Django</span>
-                                <span class="badge">Vue.js</span>
-                                <span class="badge">Redis</span>
-                            </div>
-                            <a href="https://pro.fixenix.com" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Site</a>
+                        <div class="project-links mt-auto">
+                            <a href="https://pro.fixenix.com" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Live Site</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="py-5 bg-light" id="contact">
-        <div class="container">
-            <h2 class="section-title animate-on-scroll">Get In Touch</h2>
-            <div class="row">
-                <div class="col-lg-6 animate-on-scroll" data-delay="100">
-                    <div class="contact-info mb-4">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h5 class="mb-0">Email</h5>
-                                <p class="mb-0">manis.shr@gmail.com</p>
-                            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/20c997/ffffff?text=Passport+Photo+Tool" alt="Passport Photo Maker">
+                    <div class="project-card-body">
+                        <h4>Passport Photo Maker</h4>
+                        <p>AI-powered background remover and passport photo generator.</p>
+                        <div class="project-tags mb-3">
+                            <span>AI</span><span>Django</span><span>Image Processing</span>
                         </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="fas fa-user-tie"></i>
-                            <div>
-                                <h5 class="mb-0">Availability</h5>
-                                <p class="mb-0">Freelance/Project-based work</p>
-                            </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://www.passphoto.in" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Live Site</a>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h5 class="mb-0">Location</h5>
-                                <p class="mb-0">Remote (India)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="social-icons mb-4">
-                        <a href="#" class="animate-on-scroll" data-delay="100"><i class="fab fa-github"></i></a>
-                        <a href="#" class="animate-on-scroll" data-delay="200"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="animate-on-scroll" data-delay="300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="animate-on-scroll" data-delay="400"><i class="fab fa-stack-overflow"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-6 animate-on-scroll" data-delay="200">
-                    <form>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/fd7e14/ffffff?text=Homestay+Booking" alt="Homestay Booking">
+                    <div class="project-card-body">
+                        <h4>Homestay Booking Website</h4>
+                        <p>Feature-rich homestay booking platform for Crotonleaf in Latpanchar.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Booking</span><span>Payment Gateway</span>
                         </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        <div class="project-links mt-auto">
+                            <a href="https://www.crotonleaf.com" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Live Site</a>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/6c757d/ffffff?text=Software+Company+Site" alt="Software Company Website">
+                    <div class="project-card-body">
+                        <h4>Software Company Website</h4>
+                        <p>Official website for Codefyn Software Solutions.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Portfolio</span><span>Responsive</span>
                         </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        <div class="project-links mt-auto">
+                            <a href="https://www.codefyn.com" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Live Site</a>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="700">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/d63384/ffffff?text=Blockchain+Invoice" alt="Blockchain Invoicing System">
+                    <div class="project-card-body">
+                        <h4>Blockchain-Based Invoicing</h4>
+                        <p>Blockchain-secured invoicing app for immutable financial records.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Blockchain</span><span>Finance</span>
+                        </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://github.com/manish-codefyn/Django_Blockchain_Invoicing" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="800">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/0dcaf0/ffffff?text=Blockchain+Inventory" alt="Blockchain with Inventory">
+                    <div class="project-card-body">
+                        <h4>Blockchain Invoice + Inventory</h4>
+                        <p>Advanced blockchain invoicing integrated with inventory control.</p>
+                        <div class="project-tags mb-3">
+                            <span>Blockchain</span><span>Inventory</span><span>Django</span>
+                        </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://github.com/manish-codefyn/Django_Blockchain_invoicing_with_inventory" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="900">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/f03e3e/ffffff?text=QuickCommerce+API" alt="QuickCommerce API">
+                    <div class="project-card-body">
+                        <h4>QuickCommerce API</h4>
+                        <p>Headless e-commerce API backend for mobile/web integrations.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django REST</span><span>E-commerce</span><span>API</span>
+                        </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://github.com/manish-codefyn/QuickCommerce_API" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="1000">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/198754/ffffff?text=Bulk+Email+Sender" alt="Bulk Email Sender">
+                    <div class="project-card-body">
+                        <h4>Bulk Email Marketing Tool</h4>
+                        <p>Bulk email sender and analytics dashboard built with Django.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Emails</span><span>Marketing</span>
+                        </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://github.com/manish-codefyn/BulkEmailMarketing_Django" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="1100">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/6f42c1/ffffff?text=Sofa+Store" alt="Sofa Store">
+                    <div class="project-card-body">
+                        <h4>Sofa E-commerce Store</h4>
+                        <p>Online sofa and furniture store built with Django and cart system.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Storefront</span><span>E-commerce</span>
+                        </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://github.com/manish-codefyn/sofaghar" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="1200">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/ffc107/ffffff?text=Carpentry+Site" alt="Carpentry Workshop Website">
+                    <div class="project-card-body">
+                        <h4>Carpentry Workshop Website</h4>
+                        <p>Crafted a website for local carpentry services using Django.</p>
+                        <div class="project-tags mb-3">
+                            <span>Django</span><span>Business</span><span>Workshop</span>
+                        </div>
+                        <div class="project-links mt-auto">
+                            <a href="https://github.com/manish-codefyn/carpentary" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Let's Connect</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Interested in collaborating or have a project idea? I'd love to hear from you!
+            </p>
+            <div class="row">
+                <div class="col-lg-7 contact-form-col" data-aos="fade-right" data-aos-delay="200">
+                   <form action="mailto:manis.shr@gmail.com" method="POST" enctype="text/plain"> <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="mt-3">
+                            <textarea class="form-control" name="message" rows="6" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-4">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
                     </form>
                 </div>
+                <div class="col-lg-5 ps-lg-5" data-aos="fade-left" data-aos-delay="300">
+               <div class="contact-info">
+                    <div class="contact-info-item d-flex align-items-start mb-4">
+                        <i class="fas fa-envelope fa-lg text-white me-3 mt-1"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            <a href="mailto:manis.shr@gmail.com" class="text-decoration-none ">manis.shr@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item d-flex align-items-start mb-4">
+                        <i class="fas fa-phone-alt fa-lg text-white me-3 mt-1"></i>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            <a href="tel:+919239397147" class="text-decoration-none ">+91 92393 97147</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt fa-lg text-white me-3 mt-1"></i>
+                        <div>
+                            <strong>Location:</strong><br>
+                            <span class="text-white">Siliguri, West Bengal - 734001, India</span>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="mt-4">
+                        <h5 class="text-white">Follow Me:</h5>
+                       <div class="social-icons-about mt-2">
+                            <a href="https://www.linkedin.com/in/manish-sharma-codefyn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin fa-lg me-3 text-white"></i>
+                            </a>
+                            <a href="https://github.com/manish-codefyn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fab fa-github fa-lg text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center">
+    <footer class="footer">
         <div class="container">
-            <div class="social-icons mb-4">
-                <a href="#" class="animate-on-scroll" data-delay="100"><i class="fab fa-github"></i></a>
-                <a href="#" class="animate-on-scroll" data-delay="200"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="animate-on-scroll" data-delay="300"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="animate-on-scroll" data-delay="400"><i class="fab fa-stack-overflow"></i></a>
-            </div>
-            <p>&copy; <span id="year"></span> Manish Sharma. All Rights Reserved.</p>
+            <div class="social-icons mb-3">
+                <a href="https://www.linkedin.com/in/manish-sharma-codefyn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/manish-codefyn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                </div>
+            <p>&copy; <span id="currentYear"></span> Manish Sharma. All Rights Reserved.</p>
+         
+            <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
+   
+        
     <script>
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Initialize AOS
+        AOS.init({
+            duration: 1000, // Animation duration
+            once: true,    // Whether animation should happen only once - while scrolling down
+            offset: 50,    // Offset (in px) from the original trigger point
         });
-        
-        // Navbar scroll effect
+
+        // Navbar active link highlighting on scroll (Bootstrap 5 Scrollspy)
+        // The data attributes on body and nav links handle this automatically.
+
+        // Optional: Add a class to navbar on scroll for additional styling
         window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
+            const navbar = document.getElementById('mainNavbar');
             if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+                navbar.classList.add('navbar-scrolled');
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.remove('navbar-scrolled');
             }
         });
-        
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 100) {
-                    const delay = element.getAttribute('data-delay') || 0;
-                    
-                    setTimeout(() => {
-                        element.classList.add('animated');
-                    }, delay * 100);
+
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for internal links (optional, Bootstrap handles some of this)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').length > 1 && document.querySelector(this.getAttribute('href'))) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             });
-        }
-        
-        // Initialize animations on load
-        window.addEventListener('load', animateOnScroll);
-        
-        // Animate elements when scrolling
-        window.addEventListener('scroll', animateOnScroll);
-        
-        // Initialize animations for elements already in view
-        document.addEventListener('DOMContentLoaded', function() {
-            // Force a reflow to trigger animations for elements already in view
-            setTimeout(animateOnScroll, 100);
         });
+
+
+        // Typewriter effect
+        const typewriter = new Typewriter('.typing-text', {
+            loop: true,
+            delay: 75,
+        });
+        
+        typewriter
+            .typeString('Full-Stack Django Developer')
+            .pauseFor(2000)
+            .deleteAll()
+            .typeString('Python Expert')
+            .pauseFor(2000)
+            .deleteAll()
+            .typeString('DevOps Enthusiast')
+            .pauseFor(2000)
+            .start();
+        
+        // Text gradient effect
+        const textGradient = document.querySelector('.text-gradient');
+        if (textGradient) {
+            textGradient.style.background = 'linear-gradient(90deg, var(--primary-color), var(--secondary-color))';
+            textGradient.style.webkitBackgroundClip = 'text';
+            textGradient.style.backgroundClip = 'text';
+            textGradient.style.color = 'transparent';
+        }
     </script>
 </body>
 </html>
